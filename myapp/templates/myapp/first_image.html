@@ -1,0 +1,66 @@
+<!-- myapp/templates/myapp/first_image.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function toggleDropdown() {
+            var checkbox = document.getElementById('animal_present');
+            var dropdown = document.getElementById('animal_type_dropdown');
+            dropdown.style.display = checkbox.checked ? 'block' : 'none';
+        }
+
+        window.onload = function() {
+            toggleDropdown(); // Ensure the dropdown is hidden on page load if the checkbox is not checked
+        }
+    </script>
+</head>
+<body>
+    <div class="container mt-5">
+       <!-- <h1 class="mb-4">Image</h1>-->
+        {% if image %}
+            <div class="card mb-3">
+                <div class="card-header">
+                   <!-- <h2>{{ image.image_title }}</h2>-->
+                </div>
+                <div class="card-body">
+                    <!--<p>{{ image.animal_type }}</p>-->
+                    {% if image.image_file %}
+                        <img src="{{ image.image_file.url }}" alt="{{ image.image_title }}" class="img-fluid">
+                    {% endif %}
+                </div>
+            </div>
+        {% else %}
+            <p class="text-danger">No images found.</p>
+        {% endif %}
+
+
+
+        <form action="{% url 'create_question' %}" method="post" class="mb-3">
+            {% csrf_token %}
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="animal_present" name="animal_present" onclick="toggleDropdown()">
+                <label class="form-check-label" for="animal_present">Animal Present</label>
+            </div>
+
+            <div id="animal_type_dropdown" class="form-group" style="display: none;">
+                <label for="animal_type">Animal Type</label>
+                <select class="form-control" id="animal_type" name="animal_type">
+                    <option value="Crab">Crab</option>
+                    <option value="Octopus">Octopus</option>
+                    <option value="Seahorse">Seahorse</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-success">Submit Answer</button>
+        </form>
+
+        <p>Session ID: {{ session_id }}</p>
+    </div>
+</body>
+</html>

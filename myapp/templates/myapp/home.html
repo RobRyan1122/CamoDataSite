@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <!-- Add Bootstrap CSS for styling -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .lead-centered {
+            text-align: center; /* Center the text container */
+        }
+        .lead-centered p {
+            text-align: left; /* Align each line to the left within the centered container */
+            display: inline-block; /* Keep the text inline to apply padding correctly */
+            margin: 0; /* Remove default paragraph margins */
+        }
+    </style>
+    <script>
+        function startSession() {
+            fetch("{% url 'start_session' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": "{{ csrf_token }}"
+                },
+                body: JSON.stringify({})
+            }).then(response => {
+                if (response.ok) {
+                    window.location.href = "{% url 'nth_image' %}";
+                } else {
+                    alert("Failed to start session.");
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="container mt-4">
+        <!-- Add a large title -->
+        <h1 class="display-3 text-center">Welcome to the Home Page</h1>
+
+        <!-- Add explanatory text with line breaks -->
+        <div class="lead-centered mt-3">
+            <p>The purpose of this site is to gather data on how good humans are at identifying the contents of camouflaged images in relation to how good various AI models are at the same task.</p>
+            <p>When you click start, you will be shown a series of images containing either empty sea floor or camouflaged animals. You will be asked to identify if an animal is present in the image. If you think an animal is present, you will also be asked which kind of animal you think it is.</p>
+            <p>All data recorded is anonymous.</p>
+        </div>
+
+        <!-- Add a button to redirect to the nth-image page -->
+        <div class="mt-3 text-center">
+            <button onclick="startSession()" class="btn btn-primary btn-lg">Start</button>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and dependencies (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
