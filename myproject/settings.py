@@ -14,7 +14,7 @@ import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media' / 'images'
 
@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-h)z247&c#ysogh=2^1--au(-)o8d-udx!+0if41(-+p38wgx5i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost',  '.vercel.app']
+ALLOWED_HOSTS = ['79.72.68.93']
 # Session settings
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Or cache/file-based session engine
 SESSION_COOKIE_SECURE = True  # Use HTTPS
