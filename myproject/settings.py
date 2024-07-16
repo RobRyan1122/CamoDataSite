@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-h)z247&c#ysogh=2^1--au(-)o8d-udx!+0if41(-+p38wgx5i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
+ALLOWED_HOSTS = ['127.0.0.1','localhost',  '.vercel.app']
 # Session settings
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Or cache/file-based session engine
 SESSION_COOKIE_SECURE = True  # Use HTTPS
