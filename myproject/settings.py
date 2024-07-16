@@ -27,10 +27,13 @@ MEDIA_ROOT = BASE_DIR / 'media'
 SECRET_KEY = 'django-insecure-h)z247&c#ysogh=2^1--au(-)o8d-udx!+0if41(-+p38wgx5i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['.vercel.app']
-
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
+# Session settings
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Or cache/file-based session engine
+SESSION_COOKIE_SECURE = True  # Use HTTPS
+SESSION_COOKIE_HTTPONLY = True
 
 # Application definition
 
